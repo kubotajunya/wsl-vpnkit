@@ -35,3 +35,4 @@ RUN echo "$REF" > /app/ref && \
     ln -s /files/wsl-vm /app/wsl-vpnkit /usr/sbin/ && \
     ln -s /app/wsl-vpnkit.service /etc/init.d/wsl-vpnkit && \
     ln -s /app/startup.sh /etc/profile.d/
+RUN echo test
