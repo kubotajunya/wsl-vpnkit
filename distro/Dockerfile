@@ -43,4 +43,3 @@ RUN rc-update add docker boot
 # openssh
 RUN apk add --update --no-cache openssh 
 RUN rc-update add sshd
-RUN service sshd start
