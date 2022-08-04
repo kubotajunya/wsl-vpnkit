@@ -12,7 +12,7 @@ start() {
         --background \
         --stdout $LOG_PATH \
         --stderr $LOG_PATH \
-        --exec dockerd \
+        --exec dockerd -- --host tcp://0.0.0.0:2375 --tls=false \
         --start
     ret=$?
 }
