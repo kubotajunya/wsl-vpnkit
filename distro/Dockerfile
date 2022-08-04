@@ -42,4 +42,3 @@ RUN docker-compose -v
 RUN ln -s /app/dockerd.service /etc/init.d/dockerd
 # openssh
 RUN apk add --update --no-cache openssh 
-RUN ln -s /app/sshd.service /etc/init.d/sshd
