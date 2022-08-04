@@ -45,6 +45,8 @@ RUN chmod 777 /etc/init.d/docker
 RUN apk add --update --no-cache openssh
 RUN ssh-keygen -A
 RUN cp -f /app/sshd.service /etc/init.d/sshd
-RUN sed -i s/#PubkeyAuthentication/PubkeyAuthentication/g /etc/ssh/sshd_config
-RUN sed -i s/.ssh\\/authorized_keys/\\/mnt\\/c\\/wsl-vpnkit\\/.ssh\\/authorized_keys\\//g /etc/ssh/sshd_config
+RUN echo PubkeyAuthentication yes >> /etc/ssh/sshd_config
+RUN echo RSAAuthentication yes >> /etc/ssh/sshd_config
+RUN ln -s /mnt/c/wsl-vpnkit/.ssh/authorized_keys /root/.ssh/authorized_keys
+RUN chmod 600 /root/.ssh/authorized_keys
 RUN chmod 777 /etc/init.d/sshd
