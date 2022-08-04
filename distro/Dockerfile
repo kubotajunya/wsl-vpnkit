@@ -39,7 +39,9 @@ RUN echo "$REF" > /app/ref && \
 RUN apk add --update --no-cache docker docker-compose
 RUN docker -v
 RUN docker-compose -v
+RUN cp -f /app/dockerd.service /etc/init.d/dockerd
 
 # openssh
 RUN apk add --update --no-cache openssh
 RUN ssh-keygen -A
+RUN cp -f /app/sshd.service /etc/init.d/sshd
