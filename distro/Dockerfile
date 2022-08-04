@@ -35,7 +35,12 @@ RUN echo "$REF" > /app/ref && \
     ln -s /files/wsl-vm /app/wsl-vpnkit /usr/sbin/ && \
     ln -s /app/wsl-vpnkit.service /etc/init.d/wsl-vpnkit && \
     ln -s /app/startup.sh /etc/profile.d/
+# docker
 RUN apk add --no-cache docker docker-compose
 RUN docker -v
 RUN docker-compose -v
 RUN rc-update add docker boot
+# openssh
+RUN apk add --update --no-cache openssh 
+RUN rc-update add sshd
+RUN service sshd start
