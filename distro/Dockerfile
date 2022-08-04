@@ -36,3 +36,7 @@ RUN echo "$REF" > /app/ref && \
     ln -s /app/wsl-vpnkit.service /etc/init.d/wsl-vpnkit && \
     ln -s /app/startup.sh /etc/profile.d/
 RUN apk add --no-cache docker docker-compose
+RUN docker -v
+RUN docker-compose -v
+RUN service docker start
+RUN rc-update add docker boot
