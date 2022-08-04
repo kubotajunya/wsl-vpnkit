@@ -40,8 +40,10 @@ RUN apk add --update --no-cache docker docker-compose
 RUN docker -v
 RUN docker-compose -v
 RUN cp -f /app/docker.service /etc/init.d/docker
+RUN chmod 777 /etc/init.d/docker
 # openssh
 RUN apk add --update --no-cache openssh
 RUN ssh-keygen -A
 RUN cp -f /app/sshd.service /etc/init.d/sshd
 RUN sed -i s/#PubkeyAuthentication/PubkeyAuthentication/g /etc/ssh/sshd_config
+RUN chmod 777 /etc/init.d/sshd
