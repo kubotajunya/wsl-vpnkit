@@ -1,0 +1,39 @@
+#! /bin/sh
+
+PID_PATH="/var/run/dockerd.pid"
+LOG_PATH="/var/log/dockerd.log"
+
+ret=0
+
+start() {
+    start-stop-daemon \
+        --pidfile $PID_PATH \
+        --make-pidfile \
+        --background \
+        --stdout $LOG_PATH \
+        --stderr $LOG_PATH \
+        --exec docker -- daemon \
+        --start
+    ret=$?
+}
+
+stop() {
+    start-stop-daemon \
+        --pidfile $PID_PATH \
+        --stop
+    ret=$?
+}
+
+case "$1" in
+    start)
+        start
+        ;;
+    stop)
+        stop
+        ;;
+    *)
+        echo "Usage: dockerd {start|stop}"
+        exit 1
+esac
+
+exit $ret
